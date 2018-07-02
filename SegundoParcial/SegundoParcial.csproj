@@ -52,6 +52,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BLL\Contexto.cs" />
+    <Compile Include="BLL\VehiculosBLL.cs" />
+    <Compile Include="Entidades\Vehiculos.cs" />
+    <Compile Include="Entidades\MantenimientoDetalle.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -60,35 +64,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UI\Consultas\cArticulos.cs">
+    <Compile Include="UI\Registro\rMantenimiento.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Consultas\cArticulos.Designer.cs">
-      <DependentUpon>cArticulos.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Consultas\cPersonas.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\Consultas\cPersonas.Designer.cs">
-      <DependentUpon>cPersonas.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Registro\rArticulos.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\Registro\rArticulos.Designer.cs">
-      <DependentUpon>rArticulos.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Registro\rCotizaciones.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\Registro\rCotizaciones.Designer.cs">
-      <DependentUpon>rCotizaciones.cs</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Registro\rPersonas.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="UI\Registro\rPersonas.Designer.cs">
-      <DependentUpon>rPersonas.cs</DependentUpon>
+    <Compile Include="UI\Registro\rMantenimiento.Designer.cs">
+      <DependentUpon>rMantenimiento.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -102,20 +82,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="UI\Consultas\cArticulos.resx">
-      <DependentUpon>cArticulos.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\Consultas\cPersonas.resx">
-      <DependentUpon>cPersonas.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\Registro\rArticulos.resx">
-      <DependentUpon>rArticulos.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\Registro\rCotizaciones.resx">
-      <DependentUpon>rCotizaciones.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UI\Registro\rPersonas.resx">
-      <DependentUpon>rPersonas.cs</DependentUpon>
+    <EmbeddedResource Include="UI\Registro\rMantenimiento.resx">
+      <DependentUpon>rMantenimiento.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -132,11 +100,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="BLL\" />
-    <Folder Include="Entidades\" />
+    <Folder Include="UI\Consultas\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DAL\Script\Script.sql" />
+    <Content Include="DAL\Script\VehiculosDb.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

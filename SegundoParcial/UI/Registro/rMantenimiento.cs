@@ -7,21 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Linq.Expressions;
-using SegundoParcial.Entidades;
 
-namespace SegundoParcial.UI.Consultas
+namespace SegundoParcial.UI.Registro
 {
-    public partial class cArticulos : Form
+    public partial class rMantenimiento : Form
     {
-        public cArticulos()
+        public rMantenimiento()
         {
             InitializeComponent();
-        }
-
-        private void Buscarbutton_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
