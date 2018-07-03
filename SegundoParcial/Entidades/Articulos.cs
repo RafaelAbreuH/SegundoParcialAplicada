@@ -7,15 +7,18 @@ using System.Threading.Tasks;
 
 namespace SegundoParcial.Entidades
 {
-    public class Vehiculos
+    public class Articulos
     {
         [Key]
-        public int VehiculoId { get; set; }
+        public int ArticuloId { get; set; }
         public string Descripcion { get; set; }
-        public int Mantenimiento { get; set; }
+        public int Costo { get; set; }
+        public int Ganancia { get; set; }
+        public int Precio { get; set; }
+        public int Inventario { get; set; }
 
 
-        public Vehiculos()
+        public Articulos()
         {
 
         }

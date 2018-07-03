@@ -11,43 +11,31 @@ namespace SegundoParcial.Entidades
     public class MantenimientoDetalle
     {
         [Key]
+        public int Id { get; set; }
         public int MantenimientoId { get; set; }
-        public int VehiculosId { get; set; }
-        public DateTime Fecha { get; set; }
-        public string Taller { get; set; }
+        public int VehiculoId { get; set; }
         public string Servicio { get; set; }
         public int Cantidad { get; set; }
         public int Precio { get; set; }
         public int Importe { get; set; }
-        public int Total { get; set; }
-
 
         [ForeignKey("VehiculoId")]
         public virtual Vehiculos Vehiculos { get; set; }
 
         public MantenimientoDetalle()
         {
-            MantenimientoId = 0;
-            VehiculosId = 0;
-            Fecha = DateTime.Now;
-            Taller = string.Empty;
-            Servicio = string.Empty;
-            Cantidad = 0;
-            Precio = 0;
-            Importe = 0;
-            Total = 0;
+            this.Id = 0;
+            this.MantenimientoId = 0;
+
         }
 
-        public MantenimientoDetalle(int mantenimientoId, DateTime fecha, string taller, string servicio, int cantidad, int precio, int importe, int total)
+        public MantenimientoDetalle(int id, int mantenimientoId, int vehiculoId, string servicio, int cantidad, int precio)
         {
+            Id = id;
             MantenimientoId = mantenimientoId;
-            Fecha = fecha;
-            Taller = taller;
-            Servicio = servicio;
+            VehiculoId = vehiculoId;
             Cantidad = cantidad;
             Precio = precio;
-            Importe = importe;
-            Total = total;
         }
     }
 }

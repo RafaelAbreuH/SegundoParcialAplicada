@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SegundoParcial.UI.Registro;
 
 namespace SegundoParcial
 {
@@ -15,6 +16,13 @@ namespace SegundoParcial
         public MainForm()
         {
             InitializeComponent();
+        }
+
+        private void vehiculosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            rVehiculo registro = new rVehiculo();
+            registro.MdiParent = this;
+            registro.Show();
         }
     }
 }
