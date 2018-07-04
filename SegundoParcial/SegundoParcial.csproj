@@ -54,12 +54,14 @@
   <ItemGroup>
     <Compile Include="BLL\ArticulosBLL.cs" />
     <Compile Include="BLL\MantenimientoBLL.cs" />
+    <Compile Include="BLL\TalleresBLL.cs" />
     <Compile Include="BLL\VehiculoBLL.cs" />
     <Compile Include="DAL\Contexto.cs" />
     <Compile Include="DAL\IRepository.cs" />
     <Compile Include="DAL\Repositorio.cs" />
     <Compile Include="Entidades\Articulos.cs" />
     <Compile Include="Entidades\Mantenimiento.cs" />
+    <Compile Include="Entidades\Talleres.cs" />
     <Compile Include="Entidades\Vehiculos.cs" />
     <Compile Include="Entidades\MantenimientoDetalle.cs" />
     <Compile Include="MainForm.cs">
@@ -81,6 +83,12 @@
     </Compile>
     <Compile Include="UI\Registro\rMantenimiento.Designer.cs">
       <DependentUpon>rMantenimiento.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Registro\rTalleres.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Registro\rTalleres.Designer.cs">
+      <DependentUpon>rTalleres.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Registro\rVehiculo.cs">
       <SubType>Form</SubType>
@@ -105,6 +113,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Registro\rMantenimiento.resx">
       <DependentUpon>rMantenimiento.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Registro\rTalleres.resx">
+      <DependentUpon>rTalleres.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Registro\rVehiculo.resx">
       <DependentUpon>rVehiculo.cs</DependentUpon>

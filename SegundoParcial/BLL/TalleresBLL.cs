@@ -10,34 +10,15 @@ using System.Threading.Tasks;
 
 namespace SegundoParcial.BLL
 {
-    public class ArticulosBLL
+    public class TalleresBLL
     {
-
-        public static decimal PorcientoGanancia(decimal precio, decimal costo)
-        {
-            return (precio - costo) / costo * 100;
-        }
-
-        public static decimal Precio(decimal costo, decimal ganancia)
-        {
-            return (costo * ganancia) / 100 + costo;
-        }
-
-        public static decimal Costo(decimal precio, decimal ganancia)
-        {
-            return precio / ((100 + ganancia) / 100); 
-                /*digamos que el precio es 200 y el porciento de ganancia es 100% 
-                  200 / (100% + 100) / 100%) =  100% de ganancia
-                */
-        }
-
-        public static bool Guardar(Articulos articulo)
+        public static bool Guardar(Talleres tallere)
         {
             bool paso = false;
             Contexto contexto = new Contexto();
             try
             {
-                if (contexto.Articulos.Add(articulo) != null)
+                if (contexto.Talleres.Add(tallere) != null)
                 {
                     contexto.SaveChanges();
                     paso = true;
@@ -52,7 +33,7 @@ namespace SegundoParcial.BLL
             return paso;
         }
 
-        public static bool Modificar(Articulos articulo)
+        public static bool Modificar(Talleres tallere)
         {
 
             bool paso = false;
@@ -61,7 +42,7 @@ namespace SegundoParcial.BLL
 
             try
             {
-                contexto.Entry(articulo).State = EntityState.Modified;
+                contexto.Entry(tallere).State = EntityState.Modified;
                 if (contexto.SaveChanges() > 0)
                 {
                     paso = true;
@@ -95,8 +76,8 @@ namespace SegundoParcial.BLL
             try
             {
 
-                Articulos articulo = contexto.Articulos.Find(id);
-                contexto.Articulos.Remove(articulo);
+                Talleres tallere = contexto.Talleres.Find(id);
+                contexto.Talleres.Remove(tallere);
                 if (contexto.SaveChanges() > 0)
                 {
 
@@ -119,15 +100,15 @@ namespace SegundoParcial.BLL
 
         }
 
-        public static Articulos Buscar(int id)
+        public static Talleres Buscar(int id)
         {
 
-            Articulos articulo = new Articulos();
+            Talleres tallere = new Talleres();
             Contexto contexto = new Contexto();
 
             try
             {
-                articulo = contexto.Articulos.Find(id);
+                tallere = contexto.Talleres.Find(id);
                 contexto.Dispose();
 
             }
@@ -139,20 +120,20 @@ namespace SegundoParcial.BLL
 
             }
 
-            return articulo;
+            return tallere;
 
         }
 
-        public static List<Articulos> GetList(Expression<Func<Articulos, bool>> expression)
+        public static List<Talleres> GetList(Expression<Func<Talleres, bool>> expression)
         {
 
-            List<Articulos> Articulos = new List<Articulos>();
+            List<Talleres> Talleres = new List<Talleres>();
             Contexto contexto = new Contexto();
 
             try
             {
 
-                Articulos = contexto.Articulos.Where(expression).ToList();
+                Talleres = contexto.Talleres.Where(expression).ToList();
                 contexto.Dispose();
             }
             catch (Exception)
@@ -161,7 +142,7 @@ namespace SegundoParcial.BLL
                 throw;
             }
 
-            return Articulos;
+            return Talleres;
         }
     }
 }

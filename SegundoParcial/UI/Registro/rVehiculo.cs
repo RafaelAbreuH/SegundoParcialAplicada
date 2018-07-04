@@ -125,6 +125,10 @@ namespace SegundoParcial.UI.Registro
 
         }
 
-
+        private void NuevoButton_Click(object sender, EventArgs e)
+        {
+            VehiculoIdnumericUpDown.Value = 0;
+            DescripciontextBox.Clear();
+        }
     }
 }

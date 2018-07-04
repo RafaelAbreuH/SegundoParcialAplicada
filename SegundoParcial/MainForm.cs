@@ -24,5 +24,13 @@ namespace SegundoParcial
             registro.MdiParent = this;
             registro.Show();
         }
+
+        private void articulosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            rArticulo registro = new rArticulo();
+            registro.MdiParent = this;
+            registro.Show();
+
+        }
     }
 }
