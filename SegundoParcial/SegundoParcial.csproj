@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\ArticulosBLL.cs" />
+    <Compile Include="BLL\EntradaArticuloBLL.cs" />
     <Compile Include="BLL\MantenimientoBLL.cs" />
     <Compile Include="BLL\TalleresBLL.cs" />
     <Compile Include="BLL\VehiculoBLL.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="DAL\IRepository.cs" />
     <Compile Include="DAL\Repositorio.cs" />
     <Compile Include="Entidades\Articulos.cs" />
+    <Compile Include="Entidades\EntradaArticulo.cs" />
     <Compile Include="Entidades\Mantenimiento.cs" />
     <Compile Include="Entidades\Talleres.cs" />
     <Compile Include="Entidades\Vehiculos.cs" />
@@ -77,6 +79,12 @@
     </Compile>
     <Compile Include="UI\Registro\rArticulo.Designer.cs">
       <DependentUpon>rArticulo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Registro\rEntradaArticulo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Registro\rEntradaArticulo.Designer.cs">
+      <DependentUpon>rEntradaArticulo.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\Registro\rMantenimiento.cs">
       <SubType>Form</SubType>
@@ -111,6 +119,9 @@
     <EmbeddedResource Include="UI\Registro\rArticulo.resx">
       <DependentUpon>rArticulo.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Registro\rEntradaArticulo.resx">
+      <DependentUpon>rEntradaArticulo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\Registro\rMantenimiento.resx">
       <DependentUpon>rMantenimiento.cs</DependentUpon>
     </EmbeddedResource>
@@ -121,6 +132,7 @@
       <DependentUpon>rVehiculo.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\SegundoParcial.Entidades.Articulos.datasource" />
     <None Include="Properties\DataSources\SegundoParcial.Entidades.Vehiculos.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -139,7 +151,7 @@
     <Folder Include="UI\Consultas\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DAL\Script\Parcial2Db.sql" />
+    <Content Include="DAL\Script\SQLQuery9.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

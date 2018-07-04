@@ -32,5 +32,12 @@ namespace SegundoParcial
             registro.Show();
 
         }
+
+        private void talleresToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            rTalleres registro = new rTalleres();
+            registro.MdiParent = this;
+            registro.Show();
+        }
     }
 }

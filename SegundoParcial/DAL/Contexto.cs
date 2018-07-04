@@ -13,6 +13,7 @@ namespace SegundoParcial.DAL
 
         public DbSet<Vehiculos> Vehiculos { get; set; }
         public DbSet<Talleres> Talleres { get; set; }
+        public DbSet<EntradaArticulo> EntradaArticulo { get; set; }
         public DbSet<Mantenimiento> Mantenimiento { get; set; }
         public DbSet<Articulos> Articulos { get; set; }
 

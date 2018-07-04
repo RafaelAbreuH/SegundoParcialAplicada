@@ -10,15 +10,15 @@ using System.Threading.Tasks;
 
 namespace SegundoParcial.BLL
 {
-    public class TalleresBLL
+    public class EntradaArticuloBLL
     {
-        public static bool Guardar(Talleres tallere)
+        public static bool Guardar(EntradaArticulo entradaArt)
         {
             bool paso = false;
             Contexto contexto = new Contexto();
             try
             {
-                if (contexto.Talleres.Add(tallere) != null)
+                if (contexto.EntradaArticulo.Add(entradaArt) != null)
                 {
                     contexto.SaveChanges();
                     paso = true;
@@ -33,7 +33,7 @@ namespace SegundoParcial.BLL
             return paso;
         }
 
-        public static bool Modificar(Talleres taller)
+        public static bool Modificar(EntradaArticulo taller)
         {
 
             bool paso = false;
@@ -73,8 +73,8 @@ namespace SegundoParcial.BLL
             try
             {
 
-                Talleres tallere = contexto.Talleres.Find(id);
-                contexto.Talleres.Remove(tallere);
+                EntradaArticulo entradaArt = contexto.EntradaArticulo.Find(id);
+                contexto.EntradaArticulo.Remove(entradaArt);
                 if (contexto.SaveChanges() > 0)
                 {
 
@@ -97,17 +97,22 @@ namespace SegundoParcial.BLL
 
         }
 
-        public static Talleres Buscar(int id)
+        public static EntradaArticulo Buscar(int id)
         {
 
-            Talleres tallere = new Talleres();
+            EntradaArticulo entradaArt = new EntradaArticulo();
             Contexto contexto = new Contexto();
 
             try
             {
-                tallere = contexto.Talleres.Find(id);
-                contexto.Dispose();
+                entradaArt = contexto.EntradaArticulo.Find(id);
+                entradaArt.Detalle.Count();
 
+                foreach (var item in entradaArt.Detalle)
+                {
+                    string s = item.Articulo.Descripcion;
+                }
+                contexto.Dispose();
             }
 
             catch (Exception)
@@ -117,20 +122,20 @@ namespace SegundoParcial.BLL
 
             }
 
-            return tallere;
+            return entradaArt;
 
         }
 
-        public static List<Talleres> GetList(Expression<Func<Talleres, bool>> expression)
+        public static List<EntradaArticulo> GetList(Expression<Func<EntradaArticulo, bool>> expression)
         {
 
-            List<Talleres> Talleres = new List<Talleres>();
+            List<EntradaArticulo> EntradaArticulo = new List<EntradaArticulo>();
             Contexto contexto = new Contexto();
 
             try
             {
 
-                Talleres = contexto.Talleres.Where(expression).ToList();
+                EntradaArticulo = contexto.EntradaArticulo.Where(expression).ToList();
                 contexto.Dispose();
             }
             catch (Exception)
@@ -139,7 +144,7 @@ namespace SegundoParcial.BLL
                 throw;
             }
 
-            return Talleres;
+            return EntradaArticulo;
         }
     }
 }

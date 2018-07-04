@@ -28,16 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(rTalleres));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.TallerIdnumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.NombretextBox = new System.Windows.Forms.TextBox();
             this.Eliminarbutton = new System.Windows.Forms.Button();
             this.Guardarbutton = new System.Windows.Forms.Button();
             this.NuevoButton = new System.Windows.Forms.Button();
             this.Buscarbutton = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.TallerIdnumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -58,20 +61,20 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Nombre:";
             // 
-            // numericUpDown1
+            // TallerIdnumericUpDown
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(65, 7);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(73, 20);
-            this.numericUpDown1.TabIndex = 2;
+            this.TallerIdnumericUpDown.Location = new System.Drawing.Point(65, 7);
+            this.TallerIdnumericUpDown.Name = "TallerIdnumericUpDown";
+            this.TallerIdnumericUpDown.Size = new System.Drawing.Size(73, 20);
+            this.TallerIdnumericUpDown.TabIndex = 2;
             // 
-            // textBox1
+            // NombretextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(65, 38);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(141, 52);
-            this.textBox1.TabIndex = 3;
+            this.NombretextBox.Location = new System.Drawing.Point(65, 38);
+            this.NombretextBox.Multiline = true;
+            this.NombretextBox.Name = "NombretextBox";
+            this.NombretextBox.Size = new System.Drawing.Size(141, 52);
+            this.NombretextBox.TabIndex = 3;
             // 
             // Eliminarbutton
             // 
@@ -128,6 +131,10 @@
             this.Buscarbutton.UseVisualStyleBackColor = true;
             this.Buscarbutton.Click += new System.EventHandler(this.Buscarbutton_Click);
             // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
+            // 
             // rTalleres
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -137,13 +144,14 @@
             this.Controls.Add(this.Guardarbutton);
             this.Controls.Add(this.NuevoButton);
             this.Controls.Add(this.Buscarbutton);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.NombretextBox);
+            this.Controls.Add(this.TallerIdnumericUpDown);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "rTalleres";
             this.Text = "rTalleres";
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TallerIdnumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -153,11 +161,12 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.NumericUpDown TallerIdnumericUpDown;
+        private System.Windows.Forms.TextBox NombretextBox;
         private System.Windows.Forms.Button Eliminarbutton;
         private System.Windows.Forms.Button Guardarbutton;
         private System.Windows.Forms.Button NuevoButton;
         private System.Windows.Forms.Button Buscarbutton;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }
