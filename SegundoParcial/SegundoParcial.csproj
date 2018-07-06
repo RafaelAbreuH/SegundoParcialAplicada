@@ -61,8 +61,8 @@
     <Compile Include="DAL\IRepository.cs" />
     <Compile Include="DAL\Repositorio.cs" />
     <Compile Include="Entidades\Articulos.cs" />
-    <Compile Include="Entidades\EntradaArticulo.cs" />
-    <Compile Include="Entidades\Mantenimiento.cs" />
+    <Compile Include="Entidades\EntradaArticulos.cs" />
+    <Compile Include="Entidades\Mantenimientos.cs" />
     <Compile Include="Entidades\Talleres.cs" />
     <Compile Include="Entidades\Vehiculos.cs" />
     <Compile Include="Entidades\MantenimientoDetalle.cs" />
@@ -151,7 +151,7 @@
     <Folder Include="UI\Consultas\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DAL\Script\SQLQuery9.sql" />
+    <Content Include="DAL\Script\SQLQuery1.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

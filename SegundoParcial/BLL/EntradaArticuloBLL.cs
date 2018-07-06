@@ -12,13 +12,13 @@ namespace SegundoParcial.BLL
 {
     public class EntradaArticuloBLL
     {
-        public static bool Guardar(EntradaArticulo entradaArt)
+        public static bool Guardar(EntradaArticulos entradaArt)
         {
             bool paso = false;
             Contexto contexto = new Contexto();
             try
             {
-                if (contexto.EntradaArticulo.Add(entradaArt) != null)
+                if (contexto.EntradaArticulos.Add(entradaArt) != null)
                 {
                     contexto.SaveChanges();
                     paso = true;
@@ -33,7 +33,7 @@ namespace SegundoParcial.BLL
             return paso;
         }
 
-        public static bool Modificar(EntradaArticulo taller)
+        public static bool Modificar(EntradaArticulos entradaArt)
         {
 
             bool paso = false;
@@ -42,7 +42,7 @@ namespace SegundoParcial.BLL
 
             try
             {
-                contexto.Entry(taller).State = EntityState.Modified;
+                contexto.Entry(entradaArt).State = EntityState.Modified;
                 if (contexto.SaveChanges() > 0)
                 {
                     paso = true;
@@ -73,8 +73,8 @@ namespace SegundoParcial.BLL
             try
             {
 
-                EntradaArticulo entradaArt = contexto.EntradaArticulo.Find(id);
-                contexto.EntradaArticulo.Remove(entradaArt);
+                EntradaArticulos entradaArt = contexto.EntradaArticulos.Find(id);
+                contexto.EntradaArticulos.Remove(entradaArt);
                 if (contexto.SaveChanges() > 0)
                 {
 
@@ -97,22 +97,17 @@ namespace SegundoParcial.BLL
 
         }
 
-        public static EntradaArticulo Buscar(int id)
+        public static EntradaArticulos Buscar(int id)
         {
 
-            EntradaArticulo entradaArt = new EntradaArticulo();
+            EntradaArticulos entradaArt = new EntradaArticulos();
             Contexto contexto = new Contexto();
 
             try
             {
-                entradaArt = contexto.EntradaArticulo.Find(id);
-                entradaArt.Detalle.Count();
-
-                foreach (var item in entradaArt.Detalle)
-                {
-                    string s = item.Articulo.Descripcion;
-                }
+                entradaArt = contexto.EntradaArticulos.Find(id);
                 contexto.Dispose();
+
             }
 
             catch (Exception)
@@ -126,16 +121,16 @@ namespace SegundoParcial.BLL
 
         }
 
-        public static List<EntradaArticulo> GetList(Expression<Func<EntradaArticulo, bool>> expression)
+        public static List<EntradaArticulos> GetList(Expression<Func<EntradaArticulos, bool>> expression)
         {
 
-            List<EntradaArticulo> EntradaArticulo = new List<EntradaArticulo>();
+            List<EntradaArticulos> EntradaArticulo = new List<EntradaArticulos>();
             Contexto contexto = new Contexto();
 
             try
             {
 
-                EntradaArticulo = contexto.EntradaArticulo.Where(expression).ToList();
+                EntradaArticulo = contexto.EntradaArticulos.Where(expression).ToList();
                 contexto.Dispose();
             }
             catch (Exception)

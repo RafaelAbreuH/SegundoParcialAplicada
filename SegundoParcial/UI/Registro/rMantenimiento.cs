@@ -29,9 +29,9 @@ namespace SegundoParcial.UI.Registros
             VehiculocomboBox.DisplayMember = "Descripcion";
         }
 
-        private Mantenimiento LlenaClase()
+        private Mantenimientos LlenaClase()
         {
-            Mantenimiento mantenimiento = new Mantenimiento();
+            Mantenimientos mantenimiento = new Mantenimientos();
 
             mantenimiento.MantenimientoId = Convert.ToInt32(IdnumericUpDown.Value);
             mantenimiento.Fecha = FechaDateTimePicker.Value;
@@ -72,7 +72,7 @@ namespace SegundoParcial.UI.Registros
             return retorno;
         }
 
-        private void LlenarCampos(Mantenimiento mantenimiento)
+        private void LlenarCampos(Mantenimientos mantenimiento)
         {
             IdnumericUpDown.Value = mantenimiento.MantenimientoId;
             FechaDateTimePicker.Value = mantenimiento.Fecha;

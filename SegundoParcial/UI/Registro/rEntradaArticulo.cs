@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SegundoParcial.DAL;
+using SegundoParcial.Entidades;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +17,20 @@ namespace SegundoParcial.UI.Registro
         public rEntradaArticulo()
         {
             InitializeComponent();
+            LlenarComboBox();
+        }
+
+        private void Buscarbutton_Click(object sender, EventArgs e)
+        {
+          
+        }
+
+        private void LlenarComboBox()
+        {
+            Repositorio<Articulos> repositorio = new Repositorio<Articulos>(new Contexto());
+            ArticulocomboBox.DataSource = repositorio.GetList(c => true);
+            ArticulocomboBox.ValueMember = "ArticuloId";
+            ArticulocomboBox.DisplayMember = "Descripcion";
         }
     }
 }

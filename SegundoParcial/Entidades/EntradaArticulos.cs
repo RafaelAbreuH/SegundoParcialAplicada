@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SegundoParcial.Entidades
 {
-    public class EntradaArticulo
+    public class EntradaArticulos
     {
         [Key]
         public int EntradaId { get; set; }
@@ -18,7 +18,7 @@ namespace SegundoParcial.Entidades
 
 
 
-        public EntradaArticulo()
+        public EntradaArticulos()
         {
 
         }

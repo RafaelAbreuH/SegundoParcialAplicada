@@ -33,9 +33,10 @@
             this.registrosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vehiculosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.articulosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.talleresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.consultasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ayudaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.talleresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.entradaArticuloToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,7 +64,8 @@
             this.registrosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.vehiculosToolStripMenuItem,
             this.articulosToolStripMenuItem,
-            this.talleresToolStripMenuItem});
+            this.talleresToolStripMenuItem,
+            this.entradaArticuloToolStripMenuItem});
             this.registrosToolStripMenuItem.Name = "registrosToolStripMenuItem";
             this.registrosToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
             this.registrosToolStripMenuItem.Text = "Registros";
@@ -82,6 +84,13 @@
             this.articulosToolStripMenuItem.Text = "Articulos";
             this.articulosToolStripMenuItem.Click += new System.EventHandler(this.articulosToolStripMenuItem_Click);
             // 
+            // talleresToolStripMenuItem
+            // 
+            this.talleresToolStripMenuItem.Name = "talleresToolStripMenuItem";
+            this.talleresToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.talleresToolStripMenuItem.Text = "Talleres";
+            this.talleresToolStripMenuItem.Click += new System.EventHandler(this.talleresToolStripMenuItem_Click);
+            // 
             // consultasToolStripMenuItem
             // 
             this.consultasToolStripMenuItem.Name = "consultasToolStripMenuItem";
@@ -94,12 +103,12 @@
             this.ayudaToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
             this.ayudaToolStripMenuItem.Text = "Ayuda";
             // 
-            // talleresToolStripMenuItem
+            // entradaArticuloToolStripMenuItem
             // 
-            this.talleresToolStripMenuItem.Name = "talleresToolStripMenuItem";
-            this.talleresToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.talleresToolStripMenuItem.Text = "Talleres";
-            this.talleresToolStripMenuItem.Click += new System.EventHandler(this.talleresToolStripMenuItem_Click);
+            this.entradaArticuloToolStripMenuItem.Name = "entradaArticuloToolStripMenuItem";
+            this.entradaArticuloToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.entradaArticuloToolStripMenuItem.Text = "Entrada Articulo";
+            this.entradaArticuloToolStripMenuItem.Click += new System.EventHandler(this.entradaArticuloToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -128,5 +137,6 @@
         private System.Windows.Forms.ToolStripMenuItem ayudaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem articulosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem talleresToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem entradaArticuloToolStripMenuItem;
     }
 }

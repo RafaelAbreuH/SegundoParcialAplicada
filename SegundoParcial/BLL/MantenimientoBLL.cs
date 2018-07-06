@@ -13,14 +13,14 @@ namespace SegundoParcial.BLL
     public class MantenimientoBLL
     {
 
-        public static bool Guardar(Mantenimiento mantenimiento)
+        public static bool Guardar(Mantenimientos mantenimiento)
         {
             bool paso = false;
 
             Contexto contexto = new Contexto();
             try
             {
-                if (contexto.Mantenimiento.Add(mantenimiento) != null)
+                if (contexto.Mantenimientos.Add(mantenimiento) != null)
                 {
                     contexto.SaveChanges();
                     paso = true;
@@ -35,7 +35,7 @@ namespace SegundoParcial.BLL
             return paso;
         }
 
-        public static bool Modificar(Mantenimiento mantenimiento)
+        public static bool Modificar(Mantenimientos mantenimiento)
         {
 
             bool paso = false;
@@ -44,17 +44,12 @@ namespace SegundoParcial.BLL
 
             try
             {
-                //todo: buscar las entidades que no estan para removerlas
-
-                //recorrer el detalle
                 foreach (var item in mantenimiento.Detalle)
                 {
-                    //Muy importante indicar que pasara con la entidad del detalle
                     var estado = item.Id > 0 ? EntityState.Modified : EntityState.Added;
                     contexto.Entry(item).State = estado;
                 }
 
-                //Idicar que se esta modificando el encabezado
                 contexto.Entry(mantenimiento).State = EntityState.Modified;
 
                 if (contexto.SaveChanges() > 0)
@@ -81,9 +76,9 @@ namespace SegundoParcial.BLL
             try
             {
 
-                Mantenimiento mantenimiento = contexto.Mantenimiento.Find(id);
+                Mantenimientos mantenimiento = contexto.Mantenimientos.Find(id);
 
-                contexto.Mantenimiento.Remove(mantenimiento);
+                contexto.Mantenimientos.Remove(mantenimiento);
                 if (contexto.SaveChanges() > 0)
                 {
 
@@ -105,15 +100,15 @@ namespace SegundoParcial.BLL
             return paso;
         }
 
-        public static Mantenimiento Buscar(int id)
+        public static Mantenimientos Buscar(int id)
         {
 
-            Mantenimiento mantenimiento = new Mantenimiento();
+            Mantenimientos mantenimiento = new Mantenimientos();
             Contexto contexto = new Contexto();
 
             try
             {
-                mantenimiento = contexto.Mantenimiento.Find(id);
+                mantenimiento = contexto.Mantenimientos.Find(id);
                 mantenimiento.Detalle.Count();
 
                 foreach (var item in mantenimiento.Detalle)
@@ -134,16 +129,16 @@ namespace SegundoParcial.BLL
 
         }
 
-        public static List<Mantenimiento> GetList(Expression<Func<Mantenimiento, bool>> expression)
+        public static List<Mantenimientos> GetList(Expression<Func<Mantenimientos, bool>> expression)
         {
 
-            List<Mantenimiento> Mantenimiento = new List<Mantenimiento>();
+            List<Mantenimientos> Mantenimiento = new List<Mantenimientos>();
             Contexto contexto = new Contexto();
 
             try
             {
 
-                Mantenimiento = contexto.Mantenimiento.Where(expression).ToList();
+                Mantenimiento = contexto.Mantenimientos.Where(expression).ToList();
                 contexto.Dispose();
             }
             catch (Exception)

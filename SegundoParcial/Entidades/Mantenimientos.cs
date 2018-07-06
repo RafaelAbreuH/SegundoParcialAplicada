@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SegundoParcial.Entidades
 {
-    public class Mantenimiento
+    public class Mantenimientos
     {
         [Key]
         public int MantenimientoId { get; set; }
@@ -17,7 +17,7 @@ namespace SegundoParcial.Entidades
 
         public virtual ICollection<MantenimientoDetalle> Detalle { get; set; }
 
-        public Mantenimiento()
+        public Mantenimientos()
         {
             this.Detalle = new List<MantenimientoDetalle>();
         }

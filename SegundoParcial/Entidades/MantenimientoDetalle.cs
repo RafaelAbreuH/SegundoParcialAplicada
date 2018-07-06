@@ -14,6 +14,8 @@ namespace SegundoParcial.Entidades
         public int Id { get; set; }
         public int MantenimientoId { get; set; }
         public int VehiculoId { get; set; }
+        public int TallerId { get; set; }
+        public int ArticuloId { get; set; }
         public string Servicio { get; set; }
         public int Cantidad { get; set; }
         public int Precio { get; set; }
@@ -21,6 +23,12 @@ namespace SegundoParcial.Entidades
 
         [ForeignKey("VehiculoId")]
         public virtual Vehiculos Vehiculos { get; set; }
+
+        [ForeignKey("TallerId")]
+        public virtual Talleres Talleres { get; set; }
+
+        [ForeignKey("ArticuloId")]
+        public virtual Articulos Articulos { get; set; }
 
         public MantenimientoDetalle()
         {
