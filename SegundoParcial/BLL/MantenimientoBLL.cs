@@ -12,16 +12,37 @@ namespace SegundoParcial.BLL
 {
     public class MantenimientoBLL
     {
+        public static decimal CalcularImporte(decimal precio, int cantidad)
+        {
+            return Convert.ToDecimal(precio) * Convert.ToInt32(cantidad);
+        }
+
+        public static decimal CalcularItbis(decimal subtotal)
+        {
+            return subtotal * Convert.ToDecimal(0.18);
+        }
+
+        public static decimal Total(decimal subtotal, decimal itbis)
+        {
+            return subtotal + itbis;
+        }
 
         public static bool Guardar(Mantenimientos mantenimiento)
         {
             bool paso = false;
-
+            Vehiculos vehiculos = new Vehiculos();
             Contexto contexto = new Contexto();
+
             try
             {
                 if (contexto.Mantenimientos.Add(mantenimiento) != null)
                 {
+                    foreach (var item in mantenimiento.Detalle)
+                    {
+                        contexto.Articulos.Find(item.ArticuloId).Inventario -= item.Cantidad;
+                    }
+                    contexto.Vehiculos.Find(mantenimiento.VehiculoId).Mantenimiento += Convert.ToInt32(mantenimiento.Total);
+
                     contexto.SaveChanges();
                     paso = true;
                 }

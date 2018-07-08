@@ -15,11 +15,16 @@ namespace SegundoParcial.BLL
         public static bool Guardar(EntradaArticulos entradaArt)
         {
             bool paso = false;
+            Repositorio<Articulos> articulos = new Repositorio<Articulos>(new Contexto());
             Contexto contexto = new Contexto();
             try
             {
                 if (contexto.EntradaArticulos.Add(entradaArt) != null)
                 {
+                    foreach (var item in articulos.GetList(x => x.Descripcion == entradaArt.Articulo))
+                    {
+                        contexto.Articulos.Find(item.ArticuloId).Inventario += entradaArt.Cantidad;
+                    }
                     contexto.SaveChanges();
                     paso = true;
                 }
@@ -37,12 +42,18 @@ namespace SegundoParcial.BLL
         {
 
             bool paso = false;
-
+            Repositorio<Articulos> articulos = new Repositorio<Articulos>(new Contexto());
             Contexto contexto = new Contexto();
 
             try
             {
                 contexto.Entry(entradaArt).State = EntityState.Modified;
+
+                foreach (var item in articulos.GetList(x => x.Descripcion == entradaArt.Articulo))
+                {
+                    contexto.Articulos.Find(item.ArticuloId).Inventario = entradaArt.Cantidad;
+                }
+
                 if (contexto.SaveChanges() > 0)
                 {
                     paso = true;
@@ -67,7 +78,6 @@ namespace SegundoParcial.BLL
         {
 
             bool paso = false;
-
             Contexto contexto = new Contexto();
 
             try
@@ -75,6 +85,7 @@ namespace SegundoParcial.BLL
 
                 EntradaArticulos entradaArt = contexto.EntradaArticulos.Find(id);
                 contexto.EntradaArticulos.Remove(entradaArt);
+
                 if (contexto.SaveChanges() > 0)
                 {
 
@@ -141,5 +152,7 @@ namespace SegundoParcial.BLL
 
             return EntradaArticulo;
         }
+
+
     }
 }

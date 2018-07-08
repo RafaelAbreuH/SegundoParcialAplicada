@@ -20,9 +20,63 @@ namespace SegundoParcial.UI.Registro
             LlenarComboBox();
         }
 
+        private EntradaArticulos LlenarClase()
+        {
+            EntradaArticulos entrada = new EntradaArticulos();
+
+            entrada.EntradaId = Convert.ToInt32(EntradaIdnumericUpDown.Value);
+            entrada.Fecha = FechaDateTimePicker.Value;
+            entrada.Cantidad = Convert.ToInt32(CantidadnumericUpDown.Value);
+            entrada.Articulo = ArticulocomboBox.Text;
+
+            return entrada;
+        }
+
+
+        private bool Validar(int validar) // VALIDAR
+        {
+
+            bool paso = false;
+            if (validar == 1 && EntradaIdnumericUpDown.Value == 0)
+            {
+                errorProvider.SetError(EntradaIdnumericUpDown, "Ingrese un ID");
+                paso = true;
+
+            }
+            if (validar == 2 && CantidadnumericUpDown.Value == 0)
+            {
+                errorProvider.SetError(CantidadnumericUpDown, "Ingrese una Cantidad");
+                paso = true;
+            }
+
+            return paso;
+        }
+
         private void Buscarbutton_Click(object sender, EventArgs e)
         {
-          
+            errorProvider.Clear();
+
+            if (Validar(1))
+            {
+                MessageBox.Show("Ingrese un ID");
+                return;
+            }
+
+            int id = Convert.ToInt32(EntradaIdnumericUpDown.Value);
+            EntradaArticulos entradaArticulo = BLL.EntradaArticuloBLL.Buscar(id);
+
+            if (entradaArticulo != null)
+            {
+                CantidadnumericUpDown.Value = entradaArticulo.Cantidad;
+                FechaDateTimePicker.Text = entradaArticulo.Fecha.ToString();
+                ArticulocomboBox.Text = entradaArticulo.Articulo;
+                LlenarComboBox();
+
+
+            }
+            else
+                MessageBox.Show("No se encontro", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
         }
 
         private void LlenarComboBox()
@@ -31,6 +85,57 @@ namespace SegundoParcial.UI.Registro
             ArticulocomboBox.DataSource = repositorio.GetList(c => true);
             ArticulocomboBox.ValueMember = "ArticuloId";
             ArticulocomboBox.DisplayMember = "Descripcion";
+        }
+
+        private void NuevoButton_Click(object sender, EventArgs e)
+        {
+            EntradaIdnumericUpDown.Value = 0;
+            FechaDateTimePicker.Value = DateTime.Now;
+            CantidadnumericUpDown.Value = 0;
+
+
+        }
+
+        private void Guardarbutton_Click(object sender, EventArgs e)
+        {
+            bool paso = false;
+            if (Validar(2))
+            {
+
+                MessageBox.Show("Llenar todos los campos marcados");
+                return;
+            }
+
+            errorProvider.Clear();
+
+            if (EntradaIdnumericUpDown.Value == 0)
+                paso = BLL.EntradaArticuloBLL.Guardar(LlenarClase());
+            else
+                paso = BLL.EntradaArticuloBLL.Modificar(LlenarClase());
+
+            if (paso)
+
+                MessageBox.Show("Guardado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else
+                MessageBox.Show("No se pudo guardar", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void Eliminarbutton_Click(object sender, EventArgs e)
+        {
+            errorProvider.Clear();
+
+            if (Validar(1))
+            {
+                MessageBox.Show("Ingrese un ID");
+                return;
+            }
+
+            int id = Convert.ToInt32(EntradaIdnumericUpDown.Value);
+
+            if (BLL.EntradaArticuloBLL.Eliminar(id))
+                MessageBox.Show("Eliminado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else
+                MessageBox.Show("No se pudo eliminar", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

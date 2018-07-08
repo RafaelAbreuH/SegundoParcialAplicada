@@ -29,6 +29,8 @@ namespace SegundoParcial.UI.Registro
             articulo.Costo = Convert.ToInt32(CostonumericUpDown.Value);
             articulo.Ganancia = Convert.ToInt32(GanancianumericUpDown.Value);
             articulo.Precio = Convert.ToInt32(PrecionumericUpDown.Value);
+            InventariotextBox.Text = 0.ToString();
+            articulo.Inventario = Convert.ToInt32(InventariotextBox.Text);
             return articulo;
         }
 
@@ -96,6 +98,8 @@ namespace SegundoParcial.UI.Registro
         private void Guardarbutton_Click(object sender, EventArgs e)
         {
             bool paso = false;
+            Articulos rarticulo = LlenarClase();
+
             if (Validar(2))
             {
 
@@ -196,7 +200,7 @@ namespace SegundoParcial.UI.Registro
 
             if (articulo != null)
             {
-
+                ArticuloIdnumericUpDown.Value = articulo.ArticuloId;
                 DescripciontextBox.Text = articulo.Descripcion;
                 CostonumericUpDown.Value = articulo.Costo;
                 GanancianumericUpDown.Value = articulo.Ganancia;

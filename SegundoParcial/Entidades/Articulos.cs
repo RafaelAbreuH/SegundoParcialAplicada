@@ -20,7 +20,12 @@ namespace SegundoParcial.Entidades
 
         public Articulos()
         {
-
+            ArticuloId = 0;
+            Descripcion = string.Empty;
+            this.Costo = 0;
+            this.Ganancia = 0;
+            this.Precio = 0;
+            Inventario = 0;
         }
 
         public override string ToString()

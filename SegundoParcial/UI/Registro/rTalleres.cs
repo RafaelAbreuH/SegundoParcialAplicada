@@ -61,6 +61,7 @@ namespace SegundoParcial.UI.Registro
 
             if (taller != null)
             {
+                TallerIdnumericUpDown.Value = taller.TallerId;
                 NombretextBox.Text = taller.Nombre;
             }
             else

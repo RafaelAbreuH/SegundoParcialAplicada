@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SegundoParcial.UI.Registro;
+using SegundoParcial.UI.Registros;
 
 namespace SegundoParcial
 {
@@ -43,6 +44,13 @@ namespace SegundoParcial
         private void entradaArticuloToolStripMenuItem_Click(object sender, EventArgs e)
         {
             rEntradaArticulo registro = new rEntradaArticulo();
+            registro.MdiParent = this;
+            registro.Show();
+        }
+
+        private void mantenimientoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            rMantenimiento registro = new rMantenimiento();
             registro.MdiParent = this;
             registro.Show();
         }

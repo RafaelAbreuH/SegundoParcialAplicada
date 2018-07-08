@@ -16,9 +16,9 @@ namespace SegundoParcial.Entidades
         public int VehiculoId { get; set; }
         public int TallerId { get; set; }
         public int ArticuloId { get; set; }
-        public string Servicio { get; set; }
         public int Cantidad { get; set; }
         public int Precio { get; set; }
+        public string articulo { get; set; }
         public int Importe { get; set; }
 
         [ForeignKey("VehiculoId")]
@@ -37,13 +37,26 @@ namespace SegundoParcial.Entidades
 
         }
 
-        public MantenimientoDetalle(int id, int mantenimientoId, int vehiculoId, string servicio, int cantidad, int precio)
+        public MantenimientoDetalle(int id, int mantenimientoId, int tallerId, int articuloId, string articulo, int cantidad, int precio, int importe)
         {
             Id = id;
             MantenimientoId = mantenimientoId;
-            VehiculoId = vehiculoId;
+            TallerId = tallerId;
+            ArticuloId = articuloId;
+            this.articulo = articulo;
             Cantidad = cantidad;
             Precio = precio;
+            Importe = importe;
+        }
+
+        public MantenimientoDetalle(int mantenimientoId, int articuloId, int cantidad, int precio, int importe, Articulos articulos)
+        {
+            MantenimientoId = mantenimientoId;
+            ArticuloId = articuloId;
+            Cantidad = cantidad;
+            Precio = precio;
+            Importe = importe;
+            Articulos = articulos;
         }
     }
 }

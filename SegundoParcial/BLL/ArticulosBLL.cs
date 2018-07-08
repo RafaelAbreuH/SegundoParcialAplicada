@@ -39,6 +39,7 @@ namespace SegundoParcial.BLL
             {
                 if (contexto.Articulos.Add(articulo) != null)
                 {
+
                     contexto.SaveChanges();
                     paso = true;
                 }
@@ -142,6 +143,17 @@ namespace SegundoParcial.BLL
             return articulo;
 
         }
+        public static string RetornarDescripcion(string nombre)
+        {
+            string descripcion = string.Empty;
+            var lista = GetList(x => x.Descripcion.Equals(nombre));
+            foreach (var item in lista)
+            {
+                descripcion = item.Descripcion;
+            }
+
+            return descripcion;
+        }
 
         public static List<Articulos> GetList(Expression<Func<Articulos, bool>> expression)
         {
@@ -163,5 +175,6 @@ namespace SegundoParcial.BLL
 
             return Articulos;
         }
+
     }
 }
