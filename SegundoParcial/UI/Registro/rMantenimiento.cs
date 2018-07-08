@@ -125,7 +125,7 @@ namespace SegundoParcial.UI.Registros
                 mantenimientos.MantenimientoId,
                 ToInt(item.Cells["tallerId"].Value),
                 ToInt(item.Cells["articuloId"].Value),
-                Convert.ToString(item.Cells["articulos"].Value),
+                Convert.ToString(item.Cells["Articulo"].Value),
                 ToInt(item.Cells["cantidad"].Value),
                 ToInt(item.Cells["precio"].Value),
                 ToInt(item.Cells["importe"].Value)
@@ -148,7 +148,7 @@ namespace SegundoParcial.UI.Registros
             FechaDateTimePicker.Value = mantenimiento.Fecha;
             SubTotaltextBox.Text = mantenimiento.Subtotal.ToString();
             itbistextBox.Text = mantenimiento.itbis.ToString();
-            TotaltextBox.Text = mantenimiento.itbis.ToString();
+            TotaltextBox.Text = mantenimiento.Total.ToString();
 
 
             foreach (var item in mantenimiento.Detalle)
