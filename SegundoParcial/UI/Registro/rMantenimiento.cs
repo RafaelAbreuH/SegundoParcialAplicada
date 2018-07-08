@@ -48,12 +48,15 @@ namespace SegundoParcial.UI.Registros
 
         public void RemoverColumnas()
         {
-            DetalledataGridView.Columns["MantenimientoId"].Visible = false;
-            DetalledataGridView.Columns["Id"].Visible = false;
-            DetalledataGridView.Columns["MantenimientoId"].Visible = false;
-            DetalledataGridView.Columns["TallerId"].Visible = false;
+          
             DetalledataGridView.Columns["ArticuloId"].Visible = false;
             DetalledataGridView.Columns["Articulos"].Visible = false;
+            DetalledataGridView.Columns["Talleres"].Visible = false;
+            DetalledataGridView.Columns["VehiculoId"].Visible = false;
+            DetalledataGridView.Columns["articulo"].DisplayIndex = 1;
+            DetalledataGridView.Columns["TallerId"].Visible = false;
+            DetalledataGridView.Columns["mantenimientoId"].Visible = false;
+            DetalledataGridView.Columns["id"].Visible = false;
         }
 
         private void LlenarComboBox()
@@ -74,6 +77,35 @@ namespace SegundoParcial.UI.Registros
             TallercomboBox.DisplayMember = "Nombre";
         }
 
+        private bool Validar(int error)
+        {
+            bool paso = false;
+
+
+
+            if (error == 1 && MantenimientoIdnumericUpDown.Value == 0)
+            {
+                errorProvider.SetError(MantenimientoIdnumericUpDown,
+                   "Llenar campo ID");
+                paso = true;
+            }
+            if (error == 2 && DetalledataGridView.RowCount == 0)
+            {
+                errorProvider.SetError(DetalledataGridView,
+                    "Debes Agregar un articulo ");
+                paso = true;
+            }
+
+            if (error == 3 && string.IsNullOrEmpty(ImportetextBox.Text))
+            {
+                errorProvider.SetError(ImportetextBox,
+                    "Debes agregar un articulo");
+                paso = true;
+            }
+
+            return paso;
+        }
+
         private Mantenimientos LlenarClase()
         {
             Mantenimientos mantenimientos = new Mantenimientos();
@@ -92,8 +124,8 @@ namespace SegundoParcial.UI.Registros
                 (ToInt(item.Cells["id"].Value),
                 mantenimientos.MantenimientoId,
                 ToInt(item.Cells["tallerId"].Value),
-                ToInt(item.Cells["articulosId"].Value),
-                ToInt(item.Cells["Articulos"].Value),
+                ToInt(item.Cells["articuloId"].Value),
+                Convert.ToString(item.Cells["articulos"].Value),
                 ToInt(item.Cells["cantidad"].Value),
                 ToInt(item.Cells["precio"].Value),
                 ToInt(item.Cells["importe"].Value)
@@ -272,9 +304,75 @@ namespace SegundoParcial.UI.Registros
             Limpiar();
         }
 
+        private void Guardarbutton_Click(object sender, EventArgs e)
+        {
+            if (Validar(2))
+            {
+                MessageBox.Show("Debe Agregar Algun Producto al Grid", "Validación",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else
+            {
+
+                Mantenimientos mantenimiento = LlenarClase();
+                bool Paso = false;
+
+
+
+                if (MantenimientoIdnumericUpDown.Value == 0)
+                {
+                    Paso = BLL.MantenimientoBLL.Guardar(mantenimiento);
+                    errorProvider.Clear();
+                }
+                else
+                {
+
+                    Paso = BLL.MantenimientoBLL.Modificar(mantenimiento);
+                    errorProvider.Clear();
+                }
+                if (Paso)
+                {
+                    Limpiar();
+                    MessageBox.Show("Guardado!!", "Exito",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                    MessageBox.Show("No se pudo guardar!!", "Fallo",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
         private void Removerbutton_Click(object sender, EventArgs e)
         {
+            if (DetalledataGridView.Rows.Count > 0 && DetalledataGridView.CurrentRow != null)
+            {
+                //convertir el grid en la lista
+                List<MantenimientoDetalle> detalle = (List<MantenimientoDetalle>)DetalledataGridView.DataSource;
 
-        }//termianr
+                subtotal -= detalle.ElementAt(DetalledataGridView.CurrentRow.Index).Importe;
+                detalle.RemoveAt(DetalledataGridView.CurrentRow.Index);
+                SubTotaltextBox.Text = subtotal.ToString();
+
+                itbis = BLL.MantenimientoBLL.CalcularItbis(Convert.ToDecimal(SubTotaltextBox.Text));
+                itbistextBox.Text = itbis.ToString();
+
+                Total = BLL.MantenimientoBLL.Total(Convert.ToDecimal(SubTotaltextBox.Text), Convert.ToDecimal(itbistextBox.Text));
+
+                TotaltextBox.Text = Total.ToString();
+
+                // Cargar el detalle al Grid
+                DetalledataGridView.DataSource = null;
+                DetalledataGridView.DataSource = detalle;
+
+
+                RemoverColumnas();
+            }
+        }
+
+
+
+
     }
 }

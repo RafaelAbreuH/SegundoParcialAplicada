@@ -21,8 +21,8 @@ namespace SegundoParcial.Entidades
         public string articulo { get; set; }
         public int Importe { get; set; }
 
-        [ForeignKey("VehiculoId")]
-        public virtual Vehiculos Vehiculos { get; set; }
+      //  [ForeignKey("VehiculoId")]
+      //  public virtual Vehiculos Vehiculos { get; set; }
 
         [ForeignKey("TallerId")]
         public virtual Talleres Talleres { get; set; }

@@ -48,7 +48,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.MantenimientoIdnumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
-            this.MyerrorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.ArticulocomboBox = new System.Windows.Forms.ComboBox();
@@ -62,10 +61,11 @@
             this.itbistextBox = new System.Windows.Forms.TextBox();
             this.SubTotaltextBox = new System.Windows.Forms.TextBox();
             this.Removerbutton = new System.Windows.Forms.Button();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.DetalledataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MantenimientoIdnumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MyerrorProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CantidadnumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // PreciotextBox
@@ -223,10 +223,6 @@
             this.label1.TabIndex = 30;
             this.label1.Text = "MantenimientoId";
             // 
-            // MyerrorProvider
-            // 
-            this.MyerrorProvider.ContainerControl = this;
-            // 
             // label11
             // 
             this.label11.AutoSize = true;
@@ -301,6 +297,7 @@
             this.Guardarbutton.Text = "Guardar";
             this.Guardarbutton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.Guardarbutton.UseVisualStyleBackColor = true;
+            this.Guardarbutton.Click += new System.EventHandler(this.Guardarbutton_Click);
             // 
             // NuevoButton
             // 
@@ -358,6 +355,10 @@
             this.Removerbutton.UseVisualStyleBackColor = true;
             this.Removerbutton.Click += new System.EventHandler(this.Removerbutton_Click);
             // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
+            // 
             // rMantenimiento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -399,8 +400,8 @@
             this.Load += new System.EventHandler(this.rMantenimiento_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DetalledataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MantenimientoIdnumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.MyerrorProvider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CantidadnumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -426,7 +427,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown MantenimientoIdnumericUpDown;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ErrorProvider MyerrorProvider;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ComboBox ArticulocomboBox;
@@ -440,5 +440,6 @@
         private System.Windows.Forms.TextBox itbistextBox;
         private System.Windows.Forms.TextBox TotaltextBox;
         private System.Windows.Forms.Button Removerbutton;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }

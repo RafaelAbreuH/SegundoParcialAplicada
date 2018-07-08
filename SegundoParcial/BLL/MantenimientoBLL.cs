@@ -62,23 +62,43 @@ namespace SegundoParcial.BLL
             bool paso = false;
 
             Contexto contexto = new Contexto();
-
+            var Mantenimiento = BLL.MantenimientoBLL.Buscar(mantenimiento.MantenimientoId);
             try
             {
-                foreach (var item in mantenimiento.Detalle)
+                if (Mantenimiento != null)
                 {
-                    var estado = item.Id > 0 ? EntityState.Modified : EntityState.Added;
-                    contexto.Entry(item).State = estado;
-                }
 
-                contexto.Entry(mantenimiento).State = EntityState.Modified;
 
-                if (contexto.SaveChanges() > 0)
-                {
-                    paso = true;
+                    foreach (var item in Mantenimiento.Detalle)
+                    {
+
+                        contexto.Articulos.Find(item.ArticuloId).Inventario += item.Cantidad;
+
+
+                        if (!mantenimiento.Detalle.ToList().Exists(v => v.Id == item.Id))
+                        {
+                            contexto.EntradaArticulos.Find(item.ArticuloId).Cantidad -= item.Cantidad;
+
+                            item.Articulos = null;
+                            contexto.Entry(item).State = EntityState.Deleted;
+                        }
+                    }
+
+                    foreach (var item in mantenimiento.Detalle)
+                    {
+                        var estado = item.Id > 0 ? EntityState.Modified : EntityState.Added;
+                        contexto.Entry(item).State = estado;
+                    }
+
+                    contexto.Entry(mantenimiento).State = EntityState.Modified;
+
+                    if (contexto.SaveChanges() > 0)
+                    {
+                        paso = true;
+                    }
+                    contexto.Dispose();
                 }
-                contexto.Dispose();
-            }
+                }
             catch (Exception)
             {
                 throw;
@@ -134,7 +154,7 @@ namespace SegundoParcial.BLL
 
                 foreach (var item in mantenimiento.Detalle)
                 {
-                    string s = item.Vehiculos.Descripcion;
+                    string s = item.Articulos.Descripcion;
                 }
                 contexto.Dispose();
             }
