@@ -15,5 +15,6 @@ namespace SegundoParcial.DAL
         bool Modificar(T entity);
         bool Eliminar(int id);
 
+
     }
 }

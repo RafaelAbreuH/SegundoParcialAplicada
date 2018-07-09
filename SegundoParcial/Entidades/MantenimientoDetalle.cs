@@ -34,7 +34,7 @@ namespace SegundoParcial.Entidades
         {
             this.Id = 0;
             this.MantenimientoId = 0;
-
+        
         }
 
         public MantenimientoDetalle(int id, int mantenimientoId, int tallerId, int articuloId, string articulo, int cantidad, int precio, int importe)

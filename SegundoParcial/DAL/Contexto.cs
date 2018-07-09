@@ -24,5 +24,6 @@ namespace SegundoParcial.DAL
             base.OnModelCreating(modelBuilder);
         }
 
+
     }
 }

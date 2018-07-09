@@ -39,6 +39,7 @@ namespace SegundoParcial
             rTalleres registro = new rTalleres();
             registro.MdiParent = this;
             registro.Show();
+
         }
 
         private void entradaArticuloToolStripMenuItem_Click(object sender, EventArgs e)

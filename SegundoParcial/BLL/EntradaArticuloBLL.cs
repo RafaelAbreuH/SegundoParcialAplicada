@@ -125,7 +125,7 @@ namespace SegundoParcial.BLL
             {
 
                 throw;
-
+          
             }
 
             return entradaArt;

@@ -81,7 +81,7 @@
             // 
             // DescripciontextBox
             // 
-            this.DescripciontextBox.Location = new System.Drawing.Point(74, 33);
+            this.DescripciontextBox.Location = new System.Drawing.Point(64, 33);
             this.DescripciontextBox.Multiline = true;
             this.DescripciontextBox.Name = "DescripciontextBox";
             this.DescripciontextBox.Size = new System.Drawing.Size(146, 57);

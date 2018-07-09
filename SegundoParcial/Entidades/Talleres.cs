@@ -16,7 +16,6 @@ namespace SegundoParcial.Entidades
 
         public Talleres()
         {
-
         }
 
     }

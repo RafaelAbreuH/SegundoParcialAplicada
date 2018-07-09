@@ -17,7 +17,6 @@ namespace SegundoParcial.Entidades
         public int Cantidad { get; set; }
 
 
-
         public EntradaArticulos()
         {
 

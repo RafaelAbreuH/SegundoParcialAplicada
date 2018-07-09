@@ -158,7 +158,7 @@
             // VehiculocomboBox
             // 
             this.VehiculocomboBox.FormattingEnabled = true;
-            this.VehiculocomboBox.Location = new System.Drawing.Point(66, 99);
+            this.VehiculocomboBox.Location = new System.Drawing.Point(66, 100);
             this.VehiculocomboBox.Name = "VehiculocomboBox";
             this.VehiculocomboBox.Size = new System.Drawing.Size(169, 21);
             this.VehiculocomboBox.TabIndex = 38;

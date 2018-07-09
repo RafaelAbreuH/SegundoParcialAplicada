@@ -28,6 +28,7 @@ namespace SegundoParcial.Entidades
             Inventario = 0;
         }
 
+
         public override string ToString()
         {
             return this.Descripcion;

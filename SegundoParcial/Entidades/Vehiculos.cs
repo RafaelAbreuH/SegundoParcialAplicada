@@ -17,7 +17,6 @@ namespace SegundoParcial.Entidades
 
         public Vehiculos()
         {
-
         }
 
         public override string ToString()
