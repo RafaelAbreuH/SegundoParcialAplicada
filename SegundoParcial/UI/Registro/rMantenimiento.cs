@@ -150,7 +150,6 @@ namespace SegundoParcial.UI.Registros
             itbistextBox.Text = mantenimiento.itbis.ToString();
             TotaltextBox.Text = mantenimiento.Total.ToString();
 
-
             foreach (var item in mantenimiento.Detalle)
             {
                 subtotal += item.Importe;
