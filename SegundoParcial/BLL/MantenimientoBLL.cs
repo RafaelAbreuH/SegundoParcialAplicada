@@ -89,7 +89,7 @@ namespace SegundoParcial.BLL
                         var estado = item.Id > 0 ? EntityState.Modified : EntityState.Added;
                         contexto.Entry(item).State = estado;
                     }
-                
+
                     contexto.Entry(mantenimiento).State = EntityState.Modified;
 
                     if (contexto.SaveChanges() > 0)
@@ -98,7 +98,7 @@ namespace SegundoParcial.BLL
                     }
                     contexto.Dispose();
                 }
-                }
+            }
             catch (Exception)
             {
                 throw;

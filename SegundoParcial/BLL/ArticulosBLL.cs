@@ -25,10 +25,10 @@ namespace SegundoParcial.BLL
 
         public static decimal Costo(decimal precio, decimal ganancia)
         {
-            return precio / ((100 + ganancia) / 100); 
-                /*digamos que el precio es 200 y el porciento de ganancia es 100% 
-                  200 / (100% + 100) / 100%) =  100% de ganancia
-                */
+            return precio / ((100 + ganancia) / 100);
+            /*digamos que el precio es 200 y el porciento de ganancia es 100% 
+              200 / (100% + 100) / 100%) =  100% de ganancia
+            */
         }
 
         public static bool Guardar(Articulos articulo)

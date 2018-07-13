@@ -118,7 +118,7 @@ namespace SegundoParcial.BLL
             {
 
                 throw;
-            
+
             }
 
             return vehiculo;

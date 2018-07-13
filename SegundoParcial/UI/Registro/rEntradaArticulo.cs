@@ -98,12 +98,27 @@ namespace SegundoParcial.UI.Registro
 
         private void Guardarbutton_Click(object sender, EventArgs e)
         {
+            EntradaArticulos entArticulos = LlenarClase();
             bool paso = false;
             if (Validar(2))
             {
 
                 MessageBox.Show("Llenar todos los campos marcados");
                 return;
+            }
+            else
+            {
+                if(EntradaIdnumericUpDown.Value == 0)
+                {
+                    paso = BLL.EntradaArticuloBLL.Guardar(entArticulos);
+                }
+                else
+                {
+                    var x = BLL.EntradaArticuloBLL.Buscar(Convert.ToInt32(EntradaIdnumericUpDown.Value));
+                    if (x != null)
+                        paso = BLL.EntradaArticuloBLL.Modificar(entArticulos);
+                }
+
             }
 
             errorProvider.Clear();
@@ -122,7 +137,7 @@ namespace SegundoParcial.UI.Registro
 
         private void Eliminarbutton_Click(object sender, EventArgs e)
         {
-            errorProvider.Clear();
+           
 
             if (Validar(1))
             {
@@ -136,6 +151,7 @@ namespace SegundoParcial.UI.Registro
                 MessageBox.Show("Eliminado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             else
                 MessageBox.Show("No se pudo eliminar", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            errorProvider.Clear();
         }
     }
 }

@@ -69,7 +69,6 @@ namespace SegundoParcial.UI.Registro
 
         private void Eliminarbutton_Click(object sender, EventArgs e)
         {
-            errorProvider.Clear();
 
             if (Validar(1))
             {
@@ -83,7 +82,7 @@ namespace SegundoParcial.UI.Registro
                 MessageBox.Show("Eliminado", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
             else
                 MessageBox.Show("No se pudo eliminar", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+            errorProvider.Clear();
         }
 
         private void NuevoButton_Click(object sender, EventArgs e)
@@ -102,9 +101,20 @@ namespace SegundoParcial.UI.Registro
 
             if (Validar(2))
             {
-
                 MessageBox.Show("Llenar todos los campos marcados");
-                return;
+            }
+            else
+            {
+                if(ArticuloIdnumericUpDown.Value == 0)
+                {
+                    paso = BLL.ArticulosBLL.Guardar(rarticulo);
+                }
+                else
+                {
+                    var x = BLL.ArticulosBLL.Buscar(Convert.ToInt32(ArticuloIdnumericUpDown.Value));
+                    if (x != null)
+                        paso = BLL.ArticulosBLL.Modificar(rarticulo);
+                }
             }
 
             errorProvider.Clear();
@@ -124,18 +134,18 @@ namespace SegundoParcial.UI.Registro
         private void GanancianumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             //---------------BUSCAR PRECIO
-            if(Convert.ToDecimal(GanancianumericUpDown.Value) != 0)
+            if (Convert.ToDecimal(GanancianumericUpDown.Value) != 0)
             {
-                if(Convert.ToDecimal(CostonumericUpDown.Value) != 0)
+                if (Convert.ToDecimal(CostonumericUpDown.Value) != 0)
                 {
                     PrecionumericUpDown.Value = ArticulosBLL.Precio(Convert.ToDecimal(CostonumericUpDown.Value), Convert.ToDecimal(GanancianumericUpDown.Value));
                 }
             }
 
             //--------------- BUSCAR COSTO
-            if(Convert.ToDecimal(GanancianumericUpDown.Value) != 0)
+            if (Convert.ToDecimal(GanancianumericUpDown.Value) != 0)
             {
-                if(Convert.ToDecimal(PrecionumericUpDown.Value) != 0)
+                if (Convert.ToDecimal(PrecionumericUpDown.Value) != 0)
                 {
                     CostonumericUpDown.Value = ArticulosBLL.Costo(Convert.ToDecimal(PrecionumericUpDown.Value), Convert.ToDecimal(GanancianumericUpDown.Value));
                 }
@@ -207,7 +217,7 @@ namespace SegundoParcial.UI.Registro
                 PrecionumericUpDown.Value = articulo.Precio;
                 InventariotextBox.Text = articulo.Inventario.ToString();
 
-                
+
             }
             else
                 MessageBox.Show("No se encontro", "Fallo", MessageBoxButtons.OK, MessageBoxIcon.Error);

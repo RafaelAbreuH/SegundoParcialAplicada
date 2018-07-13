@@ -76,6 +76,7 @@ namespace SegundoParcial.UI.Registro
 
         private void Guardarbutton_Click(object sender, EventArgs e)
         {
+            Vehiculos vehiculo = LlenarClase();
             bool paso = false;
             if (Validar(2))
             {
@@ -86,10 +87,16 @@ namespace SegundoParcial.UI.Registro
 
             errorProvider.Clear();
 
-            if (VehiculoIdnumericUpDown.Value == 0)
-                paso = BLL.VehiculoBLL.Guardar(LlenarClase());
-            else
-                paso = BLL.VehiculoBLL.Modificar(LlenarClase());
+               if(VehiculoIdnumericUpDown.Value == 0)
+                {
+                paso = BLL.VehiculoBLL.Guardar(vehiculo);
+                }
+                else
+                {
+                    var x = BLL.VehiculoBLL.Buscar(Convert.ToInt32(VehiculoIdnumericUpDown.Value));
+                if (x != null)
+                    paso = BLL.VehiculoBLL.Modificar(vehiculo);
+                }
 
             if (paso)
 

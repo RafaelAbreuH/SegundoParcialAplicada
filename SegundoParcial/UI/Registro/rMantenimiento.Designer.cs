@@ -38,7 +38,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.DetalledataGridView = new System.Windows.Forms.DataGridView();
+            this.MantenimientoDetalledataGridView = new System.Windows.Forms.DataGridView();
             this.label5 = new System.Windows.Forms.Label();
             this.VehiculocomboBox = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -62,7 +62,7 @@
             this.SubTotaltextBox = new System.Windows.Forms.TextBox();
             this.Removerbutton = new System.Windows.Forms.Button();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.DetalledataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MantenimientoDetalledataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MantenimientoIdnumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CantidadnumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
@@ -140,11 +140,11 @@
             // 
             // DetalledataGridView
             // 
-            this.DetalledataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DetalledataGridView.Location = new System.Drawing.Point(7, 184);
-            this.DetalledataGridView.Name = "DetalledataGridView";
-            this.DetalledataGridView.Size = new System.Drawing.Size(441, 157);
-            this.DetalledataGridView.TabIndex = 41;
+            this.MantenimientoDetalledataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.MantenimientoDetalledataGridView.Location = new System.Drawing.Point(7, 184);
+            this.MantenimientoDetalledataGridView.Name = "DetalledataGridView";
+            this.MantenimientoDetalledataGridView.Size = new System.Drawing.Size(441, 157);
+            this.MantenimientoDetalledataGridView.TabIndex = 41;
             // 
             // label5
             // 
@@ -385,7 +385,7 @@
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.DetalledataGridView);
+            this.Controls.Add(this.MantenimientoDetalledataGridView);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.VehiculocomboBox);
             this.Controls.Add(this.label4);
@@ -398,7 +398,7 @@
             this.Name = "rMantenimiento";
             this.Text = "rMantenimiento";
             this.Load += new System.EventHandler(this.rMantenimiento_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.DetalledataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MantenimientoDetalledataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MantenimientoIdnumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CantidadnumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
@@ -417,7 +417,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DataGridView DetalledataGridView;
+        private System.Windows.Forms.DataGridView MantenimientoDetalledataGridView;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox VehiculocomboBox;
         private System.Windows.Forms.Label label4;
