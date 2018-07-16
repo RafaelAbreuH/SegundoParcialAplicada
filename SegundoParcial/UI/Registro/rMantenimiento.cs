@@ -41,9 +41,6 @@ namespace SegundoParcial.UI.Registros
 
             MantenimientoDetalledataGridView.DataSource = null;
         }
-        decimal itbis = 0;
-        decimal Total = 0;
-        decimal subtotal = 0;
 
         public void RemoverColumnas()
         {
@@ -189,6 +186,12 @@ namespace SegundoParcial.UI.Registros
                 MessageBox.Show("no hay suficiente Productos para la venta!!", "Validación!!",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            if(CantidadnumericUpDown.Value == 0)
+            {
+                errorProvider.SetError(CantidadnumericUpDown, "Error");
+                MessageBox.Show("Debes Elegir una cantidad!!", "Validación!!",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             else
             {
                   detalle.Add(
@@ -210,8 +213,11 @@ namespace SegundoParcial.UI.Registros
 
             int x = Convert.ToInt32(CantidadnumericUpDown.Value);
             articulo.Inventario -= x;
+            double Total = 0;
+            double itbis = 0;
+            double subtotal = 0;
 
-            foreach (var item in detalle) //SubTotal
+            foreach (var item in detalle) 
             {
                 Total += item.Importe;
             }
@@ -220,7 +226,6 @@ namespace SegundoParcial.UI.Registros
             SubTotaltextBox.Text = subtotal.ToString();
            // itbis = BLL.MantenimientoBLL.CalcularItbis(Convert.ToDecimal(SubTotaltextBox.Text));
             itbistextBox.Text = itbis.ToString();
-            Total = BLL.MantenimientoBLL.Total(Convert.ToDecimal(SubTotaltextBox.Text), Convert.ToDecimal(itbistextBox.Text));
             TotaltextBox.Text = Total.ToString();
         }
 
@@ -298,7 +303,7 @@ namespace SegundoParcial.UI.Registros
                 Total -= item.Importe;
             }
             Total *= (-1);
-            Itbis = Total * 0.18f;
+            Itbis = (Total * 18) / 100;
             SubTotal = Total - Itbis;
             SubTotaltextBox.Text = SubTotal.ToString();
             itbistextBox.Text = Itbis.ToString();
@@ -356,20 +361,6 @@ namespace SegundoParcial.UI.Registros
 
                 int x = Convert.ToInt32(CantidadnumericUpDown.Value);
                 articulo.Inventario += x;
-
-                subtotal = 0;
-                foreach (var item in detalle)
-                    subtotal -= item.Importe;
-
-                subtotal *= (-1);
-                SubTotaltextBox.Text = subtotal.ToString();
-
-                itbis = BLL.MantenimientoBLL.CalcularItbis(Convert.ToDecimal(SubTotaltextBox.Text));
-                itbistextBox.Text = itbis.ToString();
-
-                Total = BLL.MantenimientoBLL.Total(Convert.ToDecimal(SubTotaltextBox.Text), Convert.ToDecimal(itbistextBox.Text));
-
-                TotaltextBox.Text = Total.ToString();
 
                 // Cargar el detalle al Grid
                 MantenimientoDetalledataGridView.DataSource = null;

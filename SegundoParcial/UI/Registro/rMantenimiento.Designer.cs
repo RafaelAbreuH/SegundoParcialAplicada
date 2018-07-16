@@ -138,11 +138,11 @@
             this.label6.TabIndex = 42;
             this.label6.Text = "Articulo:";
             // 
-            // DetalledataGridView
+            // MantenimientoDetalledataGridView
             // 
             this.MantenimientoDetalledataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.MantenimientoDetalledataGridView.Location = new System.Drawing.Point(7, 184);
-            this.MantenimientoDetalledataGridView.Name = "DetalledataGridView";
+            this.MantenimientoDetalledataGridView.Name = "MantenimientoDetalledataGridView";
             this.MantenimientoDetalledataGridView.Size = new System.Drawing.Size(441, 157);
             this.MantenimientoDetalledataGridView.TabIndex = 41;
             // 
@@ -324,6 +324,7 @@
             // TotaltextBox
             // 
             this.TotaltextBox.Location = new System.Drawing.Point(318, 403);
+            this.TotaltextBox.MaxLength = 9;
             this.TotaltextBox.Name = "TotaltextBox";
             this.TotaltextBox.ReadOnly = true;
             this.TotaltextBox.Size = new System.Drawing.Size(130, 20);
@@ -332,6 +333,7 @@
             // itbistextBox
             // 
             this.itbistextBox.Location = new System.Drawing.Point(318, 377);
+            this.itbistextBox.MaxLength = 9;
             this.itbistextBox.Name = "itbistextBox";
             this.itbistextBox.ReadOnly = true;
             this.itbistextBox.Size = new System.Drawing.Size(130, 20);
@@ -340,6 +342,7 @@
             // SubTotaltextBox
             // 
             this.SubTotaltextBox.Location = new System.Drawing.Point(318, 351);
+            this.SubTotaltextBox.MaxLength = 9;
             this.SubTotaltextBox.Name = "SubTotaltextBox";
             this.SubTotaltextBox.ReadOnly = true;
             this.SubTotaltextBox.Size = new System.Drawing.Size(130, 20);
