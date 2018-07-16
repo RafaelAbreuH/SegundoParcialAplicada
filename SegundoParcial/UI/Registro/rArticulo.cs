@@ -105,7 +105,7 @@ namespace SegundoParcial.UI.Registro
             }
             else
             {
-                if(ArticuloIdnumericUpDown.Value == 0)
+                if(ArticuloIdnumericUpDown.Value == null)
                 {
                     paso = BLL.ArticulosBLL.Guardar(rarticulo);
                 }

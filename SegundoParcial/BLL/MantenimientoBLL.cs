@@ -41,7 +41,7 @@ namespace SegundoParcial.BLL
                     {
                         contexto.Articulos.Find(item.ArticuloId).Inventario -= item.Cantidad;
                     }
-                    contexto.Vehiculos.Find(mantenimiento.VehiculoId).Mantenimiento += Convert.ToInt32(mantenimiento.Total);
+                    contexto.Vehiculos.Find(mantenimiento.VehiculoId).Mantenimiento += mantenimiento.Total;
 
                     contexto.SaveChanges();
                     paso = true;
@@ -67,8 +67,6 @@ namespace SegundoParcial.BLL
             {
                 if (Mantenimiento != null)
                 {
-
-
                     foreach (var item in Mantenimiento.Detalle)
                     {
 
@@ -77,7 +75,7 @@ namespace SegundoParcial.BLL
 
                         if (!mantenimiento.Detalle.ToList().Exists(v => v.Id == item.Id))
                         {
-                            contexto.EntradaArticulos.Find(item.ArticuloId).Cantidad -= item.Cantidad;
+                           // contexto.Articulo.Find(item.ArticuloId).Cantidad -= item.Cantidad;
 
                             item.Articulos = null;
                             contexto.Entry(item).State = EntityState.Deleted;
@@ -86,18 +84,29 @@ namespace SegundoParcial.BLL
 
                     foreach (var item in mantenimiento.Detalle)
                     {
+                        contexto.Articulos.Find(item.ArticuloId).Inventario -= item.Cantidad;
+                        //aqui es que va
                         var estado = item.Id > 0 ? EntityState.Modified : EntityState.Added;
                         contexto.Entry(item).State = estado;
                     }
 
+                    Mantenimientos EntradaAnt = BLL.MantenimientoBLL.Buscar(Mantenimiento.MantenimientoId);
+                    decimal Diferencia;
+
+                   Diferencia = Mantenimiento.Total - EntradaAnt.Total;
+                    Vehiculos vehiculo = BLL.VehiculoBLL.Buscar(Mantenimiento.VehiculoId);
+                    vehiculo.Mantenimiento = Diferencia;
+                    BLL.VehiculoBLL.Modificar(vehiculo);
+
+
                     contexto.Entry(mantenimiento).State = EntityState.Modified;
+                }
 
                     if (contexto.SaveChanges() > 0)
                     {
                         paso = true;
                     }
                     contexto.Dispose();
-                }
             }
             catch (Exception)
             {
@@ -118,8 +127,18 @@ namespace SegundoParcial.BLL
             {
 
                 Mantenimientos mantenimiento = contexto.Mantenimientos.Find(id);
+                if(mantenimiento != null)
+                {
+                    foreach(var item in mantenimiento.Detalle)
+                    {
+                        contexto.Articulos.Find(item.ArticuloId).Inventario += item.Cantidad;
+                    }
+                }
+                contexto.Vehiculos.Find(mantenimiento.VehiculoId).Mantenimiento -= mantenimiento.Total;
 
+                mantenimiento.Detalle.Count();
                 contexto.Mantenimientos.Remove(mantenimiento);
+
                 if (contexto.SaveChanges() > 0)
                 {
 
@@ -150,22 +169,20 @@ namespace SegundoParcial.BLL
             try
             {
                 mantenimiento = contexto.Mantenimientos.Find(id);
-                mantenimiento.Detalle.Count();
-
-                foreach (var item in mantenimiento.Detalle)
+                if (mantenimiento != null)
                 {
-                    string s = item.Articulos.Descripcion;
+                    mantenimiento.Detalle.Count();
+
+                    foreach (var item in mantenimiento.Detalle)
+                    {
+
+                        string s = item.Articulos.Descripcion;
+                    }
+
                 }
                 contexto.Dispose();
             }
-
-            catch (Exception)
-            {
-
-                throw;
-
-            }
-
+            catch (Exception) { throw; }
             return mantenimiento;
 
         }

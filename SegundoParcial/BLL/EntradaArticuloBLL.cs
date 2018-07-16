@@ -15,16 +15,14 @@ namespace SegundoParcial.BLL
         public static bool Guardar(EntradaArticulos entradaArt)
         {
             bool paso = false;
-            Repositorio<Articulos> articulos = new Repositorio<Articulos>(new Contexto());
             Contexto contexto = new Contexto();
             try
             {
                 if (contexto.EntradaArticulos.Add(entradaArt) != null)
                 {
-                    foreach (var item in articulos.GetList(x => x.Descripcion == entradaArt.Articulo))
-                    {
-                        contexto.Articulos.Find(item.ArticuloId).Inventario += entradaArt.Cantidad;
-                    }
+                    var Articulo = contexto.Articulos.Find(entradaArt.ArticuloId);
+                    Articulo.Inventario += entradaArt.Cantidad;
+                    BLL.ArticulosBLL.Modificar(Articulo);
                     contexto.SaveChanges();
                     paso = true;
                 }
@@ -42,35 +40,31 @@ namespace SegundoParcial.BLL
         {
 
             bool paso = false;
-            Repositorio<Articulos> articulos = new Repositorio<Articulos>(new Contexto());
             Contexto contexto = new Contexto();
 
             try
             {
-                contexto.Entry(entradaArt).State = EntityState.Modified;
+                EntradaArticulos EntradaAnterior = EntradaArticuloBLL.Buscar(entradaArt.EntradaId);
 
-                foreach (var item in articulos.GetList(x => x.Descripcion == entradaArt.Articulo))
-                {
-                    contexto.Articulos.Find(item.ArticuloId).Inventario = entradaArt.Cantidad;
-                }
+                int modificado = entradaArt.Cantidad - EntradaAnterior.Cantidad;
+
+                Articulos articulo = ArticulosBLL.Buscar(entradaArt.ArticuloId);
+                articulo.Inventario += modificado;
+                ArticulosBLL.Modificar(articulo);
+
+                contexto.Entry(entradaArt).State = EntityState.Modified;
 
                 if (contexto.SaveChanges() > 0)
                 {
                     paso = true;
-
                 }
-
                 contexto.Dispose();
-
             }
 
             catch (Exception)
             {
-
                 throw;
-
             }
-
             return paso;
         }
 
@@ -83,8 +77,13 @@ namespace SegundoParcial.BLL
             try
             {
 
-                EntradaArticulos entradaArt = contexto.EntradaArticulos.Find(id);
-                contexto.EntradaArticulos.Remove(entradaArt);
+                EntradaArticulos entradaArticulos = contexto.EntradaArticulos.Find(id);
+
+                Articulos articulo = ArticulosBLL.Buscar(entradaArticulos.ArticuloId);
+                articulo.Inventario -= entradaArticulos.Cantidad;
+                ArticulosBLL.Modificar(articulo);
+
+                contexto.EntradaArticulos.Remove(entradaArticulos);
 
                 if (contexto.SaveChanges() > 0)
                 {

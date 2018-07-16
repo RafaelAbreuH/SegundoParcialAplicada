@@ -42,7 +42,6 @@ namespace SegundoParcial.UI.Registros
             MantenimientoDetalledataGridView.DataSource = null;
         }
         decimal itbis = 0;
-        decimal importe = 0;
         decimal Total = 0;
         decimal subtotal = 0;
 
@@ -212,10 +211,12 @@ namespace SegundoParcial.UI.Registros
 
             foreach(var item in detalle) //SubTotal
             {
-                subtotal += item.Importe;
+                Total += item.Importe;
             }
+            itbis = (Total * 18) / 100;
+            subtotal = Total - itbis;
             SubTotaltextBox.Text = subtotal.ToString();
-            itbis = BLL.MantenimientoBLL.CalcularItbis(Convert.ToDecimal(SubTotaltextBox.Text));
+           // itbis = BLL.MantenimientoBLL.CalcularItbis(Convert.ToDecimal(SubTotaltextBox.Text));
             itbistextBox.Text = itbis.ToString();
             Total = BLL.MantenimientoBLL.Total(Convert.ToDecimal(SubTotaltextBox.Text), Convert.ToDecimal(itbistextBox.Text));
             TotaltextBox.Text = Total.ToString();
@@ -278,6 +279,30 @@ namespace SegundoParcial.UI.Registros
         {
             Limpiar();
         }
+
+        private void RebajarValores()
+        {
+            List<MantenimientoDetalle> detalle = new List<MantenimientoDetalle>();
+
+            if (MantenimientoDetalledataGridView.DataSource != null)
+            {
+                detalle = (List<MantenimientoDetalle>)MantenimientoDetalledataGridView.DataSource;
+            }
+            double Total = 0;
+            double Itbis = 0;
+            double SubTotal = 0;
+            foreach (var item in detalle)
+            {
+                Total -= item.Importe;
+            }
+            Total *= (-1);
+            Itbis = Total * 0.18f;
+            SubTotal = Total - Itbis;
+            SubTotaltextBox.Text = SubTotal.ToString();
+            itbistextBox.Text = Itbis.ToString();
+            TotaltextBox.Text = Total.ToString();
+        }
+
 
         private void Guardarbutton_Click(object sender, EventArgs e)
         {
@@ -344,7 +369,7 @@ namespace SegundoParcial.UI.Registros
                 MantenimientoDetalledataGridView.DataSource = null;
                 MantenimientoDetalledataGridView.DataSource = detalle;
 
-
+                RebajarValores();
                 RemoverColumnas();
             }
         }

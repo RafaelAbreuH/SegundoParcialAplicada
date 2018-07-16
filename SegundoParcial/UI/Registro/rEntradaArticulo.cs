@@ -27,7 +27,7 @@ namespace SegundoParcial.UI.Registro
             entrada.EntradaId = Convert.ToInt32(EntradaIdnumericUpDown.Value);
             entrada.Fecha = FechaDateTimePicker.Value;
             entrada.Cantidad = Convert.ToInt32(CantidadnumericUpDown.Value);
-            entrada.Articulo = ArticulocomboBox.Text;
+            entrada.ArticuloId = (int)ArticulocomboBox.SelectedValue;
 
             return entrada;
         }
@@ -69,7 +69,7 @@ namespace SegundoParcial.UI.Registro
             {
                 CantidadnumericUpDown.Value = entradaArticulo.Cantidad;
                 FechaDateTimePicker.Text = entradaArticulo.Fecha.ToString();
-                ArticulocomboBox.Text = entradaArticulo.Articulo;
+                ArticulocomboBox.SelectedValue = entradaArticulo.ArticuloId;
                 LlenarComboBox();
 
 
@@ -108,7 +108,7 @@ namespace SegundoParcial.UI.Registro
             }
             else
             {
-                if(EntradaIdnumericUpDown.Value == 0)
+                if(EntradaIdnumericUpDown.Value == null)
                 {
                     paso = BLL.EntradaArticuloBLL.Guardar(entArticulos);
                 }
