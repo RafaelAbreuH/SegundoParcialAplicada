@@ -179,16 +179,15 @@ namespace SegundoParcial.UI.Registros
                 detalle = (List<MantenimientoDetalle>)MantenimientoDetalledataGridView.DataSource;
             }
 
-            foreach (var item in BLL.ArticulosBLL.GetList(x => x.Inventario < CantidadnumericUpDown.Value))
-            {
+            Repositorio<Articulos> repositorio = new Repositorio<Articulos>(new Contexto());
 
-                MessageBox.Show("No hay suficiente Articulos para la venta ", "Validacion", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (string.IsNullOrEmpty(ImportetextBox.Text))
+            Articulos articulo = (Articulos)ArticulocomboBox.SelectedItem;
+            
+            if ((int)CantidadnumericUpDown.Value > articulo.Inventario)
             {
-                MessageBox.Show("Seleccione una cantidad", "Validacion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                errorProvider.SetError(CantidadnumericUpDown, "Error");
+                MessageBox.Show("no hay suficiente Productos para la venta!!", "Validación!!",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
@@ -209,7 +208,10 @@ namespace SegundoParcial.UI.Registros
                 RemoverColumnas();
             }
 
-            foreach(var item in detalle) //SubTotal
+            int x = Convert.ToInt32(CantidadnumericUpDown.Value);
+            articulo.Inventario -= x;
+
+            foreach (var item in detalle) //SubTotal
             {
                 Total += item.Importe;
             }
@@ -350,6 +352,10 @@ namespace SegundoParcial.UI.Registros
 
                 List<MantenimientoDetalle> detalle = (List<MantenimientoDetalle>)MantenimientoDetalledataGridView.DataSource;
                 detalle.RemoveAt(MantenimientoDetalledataGridView.CurrentRow.Index);
+                Articulos articulo = (Articulos)ArticulocomboBox.SelectedItem;
+
+                int x = Convert.ToInt32(CantidadnumericUpDown.Value);
+                articulo.Inventario += x;
 
                 subtotal = 0;
                 foreach (var item in detalle)
